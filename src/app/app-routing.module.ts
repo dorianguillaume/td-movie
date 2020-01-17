@@ -5,12 +5,15 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { AuthGuardService } from './shared/auth-guard.service';
+import { LoginComponent } from './login/login.component';
+import { NewMovieComponent } from './new-movie/new-movie.component';
 
 
 const routes: Routes = [
   {
     path: 'user-list', 
-    component: UserListComponent
+    component: UserListComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'user/:id', 
@@ -19,18 +22,26 @@ const routes: Routes = [
   },
   {
     path: 'movie-list',
-    component: MovieListComponent
+    component: MovieListComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'movie/:id',
-    component: MovieDetailsComponent
+    component: MovieDetailsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'new-movie', 
+    component: NewMovieComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '**',
-    redirectTo: 'user-list'
+    redirectTo: 'new-movie'
   }
-
-
 ];
 
 @NgModule({

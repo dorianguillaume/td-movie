@@ -16,9 +16,16 @@ export class MovieDetailsComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(
       (params) => {
-        this.movie = this.movieService.findMovie(params.get('id'))
+        this.movieService.findMovie(params.get('id')).subscribe(
+          movie => {
+            this.movie = movie
+            console.log(movie)
+          }
+        )          
       }
     )
   }
+
+  
 
 }

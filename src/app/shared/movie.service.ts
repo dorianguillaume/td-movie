@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../model/Movie';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  public MOVIES = [
-    new Movie('The Hateful Eight', 'Tarantino', new Date("2015")),
-    new Movie('Star Wars: Episode IX - The Rise of Skywalker', 'J.J Abrams', new Date('2019')),
-    new Movie('Green Book', 'Peter Farrelly', new Date('2018'))
-  ]
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   getMovies(){
-    return this.MOVIES
+    return this.httpClient.get('api/movies')
   }
-
   //find => Renvoie un objet Movie SI la fonction anonyme renvoie un boolean true
-  findMovie(name){
-    return this.MOVIES.find( movie => {
-      return name = movie.name
-    })
+   findMovie(id): Observable<Movie>{
+    return this.httpClient.get<Movie>('api/movies/'+ id)
+  } 
+
+  createMovie(movie){
+    return this.httpClient.post('api/movies', movie);
   }
+  
 }

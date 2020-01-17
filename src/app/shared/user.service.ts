@@ -7,9 +7,9 @@ import { User } from '../model/User';
 export class UserService {
 
   public USERS = [
-    new User('Jean', 'Martin'),
-    new User('Eric', 'Dupont'),
-    new User('Thierry', 'Legrand')
+    new User('Jean', 'Martin', 'jeanmartin@gmail.com', 'mdp'),
+    new User('Eric', 'Dupont', 'ericdupont@gmail.com', '1234'),
+    new User('Thierry', 'Legrand', 'thierrylegrand@gmail.com', 'azerty')
   ]
 
   constructor() { }
